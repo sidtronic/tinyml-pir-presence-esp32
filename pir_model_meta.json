@@ -1,0 +1,50 @@
+{
+  "sensor": "HC-SR501",
+  "interface": "digital",
+  "sample_rate_hz": 10,
+  "window_samples": 50,
+  "channels": 1,
+  "normalization": "none (raw 0/1)",
+  "labels": [
+    "no_person",
+    "person"
+  ],
+  "layers": [
+    {
+      "op": "Flatten",
+      "in": [
+        50,
+        1
+      ],
+      "out": [
+        50
+      ]
+    },
+    {
+      "op": "Dense",
+      "in": 50,
+      "out": 2,
+      "activation": "none",
+      "weights": {
+        "dtype": "int8",
+        "quant": "symmetric_per_tensor",
+        "scale": 0.01936188153922558,
+        "zero_point": 0,
+        "offset": 0,
+        "bytes": 100
+      },
+      "bias": {
+        "dtype": "float32",
+        "offset": 100,
+        "bytes": 8
+      }
+    },
+    {
+      "op": "Softmax",
+      "n": 2
+    }
+  ],
+  "total_weight_bytes": 108,
+  "test_accuracy_float": 0.9667,
+  "test_accuracy_int8": 0.9667
+}

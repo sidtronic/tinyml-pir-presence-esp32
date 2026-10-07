@@ -1,0 +1,5 @@
+__pycache__/
+*.keras
+*.tflite
+*.png
+pir_weights.bin
